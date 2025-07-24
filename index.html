@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Luxury Watch Insurance – Live Quotes in 15 sec</title>
+  <meta name="description" content="Real-time insurance quotes for every Rolex, Patek, AP and more. Compare BriteCo, Hodinkee, Chubb instantly.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="max-image-preview:large, index, follow">
+  <link rel="canonical" href="https://luxwatchinsure.com/">
+  <meta property="og:image" content="https://luxwatchinsure.com/hero.avif">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>{% include "critical.css" %}</style>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Luxury Watch Insurance – Live Quotes & New Drops</h1>
+    <p>Compare real-time premiums from top insurers in under 15 seconds. Updated hourly.</p>
+  </header>
+
+  <!-- QUOTE WIDGET -->
+  <section id="quote" hx-get="/api/quote" hx-trigger="load, every 900s">
+    <!-- server injects table -->
+  </section>
+
+  <!-- NEW MODELS -->
+  <section id="new">
+    <h2>Just Released This Week</h2>
+    <div id="drops" hx-get="/api/new-models" hx-trigger="load, every 3600s">
+      <!-- server injects cards -->
+    </div>
+  </section>
+
+  <!-- FAQ SCHEMA -->
+  <section id="faq">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"What does watch insurance cover?","acceptedAnswer":{"@type":"Answer","text":"Theft, loss, damage, and mysterious disappearance worldwide."}},
+      {"@type":"Question","name":"How much does Rolex insurance cost?","acceptedAnswer":{"@type":"Answer","text":"1.5 %–2 % of appraised value per year. See live numbers above."}}
+    ]}
+    </script>
+  </section>
+
+  <!-- ADSENSE -->
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center;"
+       data-ad-layout="in-article"
+       data-ad-format="fluid"
+       data-ad-client="ca-pub-XXXXXXXXXXXX"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <!-- STICKY EMAIL CAPTURE -->
+  <div x-data="{ open: false }" x-show="open" x-init="setTimeout(()=>open=true, 45000)"
+       class="sticky-banner">
+    <form hx-post="/api/subscribe">
+      <input type="email" placeholder="Price-drop alerts for your reference" required>
+      <button>Join</button>
+    </form>
+  </div>
+
+  <footer>
+    <small>© 2024. Links may be affiliate. Data last updated <span id="ts"></span>.</small>
+  </footer>
+
+  <script>document.getElementById('ts').textContent = new Date().toLocaleString();</script>
+  <script src="script.js"></script>
+</body>
+</html>
